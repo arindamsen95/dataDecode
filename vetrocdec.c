@@ -56,8 +56,9 @@ vetrocDataDecode(uint32_t data)
       {
 	vetroc_event_header_t d; d.raw = data;
 
-	printf("%8X - EVENT HEADER 1 - trig num = %d\n",
+	printf("%8X - EVENT HEADER 1 - slot = %d   trig num = %d\n",
 	       d.raw,
+	       d.bf.slotid,
 	       d.bf.trigger_number);
 	break;
       }

@@ -148,7 +148,7 @@ fa250DataDecode(uint32_t data)
 	  {
 	    fa250_peppo_lo_sum_t d; d.raw = data;
 
-	    printf("%8X - PEPPo Lo Sum - lo sum = 0x%06x\n",
+	    printf("%8X - PEPPo Lo Sum -              lo sum = 0x%06x\n",
 		   d.raw,
 		   d.bf.lo_sum);
 	    break;

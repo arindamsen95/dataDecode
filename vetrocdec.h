@@ -5,7 +5,8 @@
 /* 2: EVENT HEADER */
 typedef struct
 {
-  uint32_t trigger_number:27;
+  uint32_t trigger_number:22;
+  uint32_t slotid:5;
   uint32_t data_type_tag:4;
   uint32_t data_type_defining:1;
 } vetroc_event_header;

@@ -11,7 +11,7 @@ fa250DataDecode(uint32_t data)
   static int new_type = 0;
   int type_current = 0;
   static int pulse_number = 0;
-  static int isca = 0;
+  static int isca = 0, nsca = 0;
   generic_data_word_t gword;
 
   gword.raw = data;
@@ -26,6 +26,14 @@ fa250DataDecode(uint32_t data)
       new_type = 0;
       type_current = type_last;
     }
+
+  if((type_last == 12) && (nsca > 0)) /* Scaler data continues nsca times */
+    {
+      new_type = 0;
+      type_current = 12;
+      nsca--;
+    }
+
 
   switch( type_current )
     {
@@ -238,10 +246,11 @@ fa250DataDecode(uint32_t data)
 		 d.raw,
 		 d.bf.number_scaler_words);
 	  isca = 1;
+	  nsca = d.bf.number_scaler_words;
 	}
       else
 	{
-	  printf("%8X - SCALER DATA - word = %2d  counter = %d\n",
+	  printf("%8X - SCALER DATA - word = %2d  counter = %u\n",
 		 data,
 		 isca++,
 		 data);
